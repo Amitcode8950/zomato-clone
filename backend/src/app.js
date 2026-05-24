@@ -15,6 +15,7 @@ app.use(cookieParser());
 app.get("/", (req, res) => {
   res.send("hello world");
 });
+// auth Routes
 app.use("/api/auth", authRoutes);
 
 
