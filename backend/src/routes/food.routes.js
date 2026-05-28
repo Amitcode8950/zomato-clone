@@ -9,5 +9,5 @@ const upload = multer({
 })
 
 // http://localhost:8000/api/food/   {protected route for food partner}
-router.post("/", upload.single("image"), authMiddleware.authfoodpartner, upload.single("video"), foodController.createFood);
+router.post("/", authMiddleware.authfoodpartner, upload.single("video"), foodController.createFood);
 module.exports = router;

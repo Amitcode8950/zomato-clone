@@ -1,4 +1,4 @@
-const foodModel = require("../modules/food.modules");
+const foodPartnerModel = require("../modules/foodpartner.modules");
 const jwt = require("jsonwebtoken");
 
 async function authfoodpartner(req, res, next) {
@@ -8,7 +8,17 @@ async function authfoodpartner(req, res, next) {
   }
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const foodPartner = await foodModel.findById(decoded.id);
+    let foodPartner;
+    if (decoded.id) {
+      foodPartner = await foodPartnerModel.findById(decoded.id);
+    } else if (decoded.email) {
+      foodPartner = await foodPartnerModel.findOne({ email: decoded.email });
+    }
+
+    if (!foodPartner) {
+      return res.status(401).json({ message: "Food partner not found, please login again" });
+    }
+
     req.foodPartner = foodPartner;
     next();
   } catch (error) {
