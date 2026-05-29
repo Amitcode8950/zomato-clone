@@ -10,4 +10,8 @@ const upload = multer({
 
 // http://localhost:8000/api/food/   {protected route for food partner}
 router.post("/", authMiddleware.authfoodpartner, upload.single("video"), foodController.createFood);
+// http://localhost:8000/api/food/partner/:partnerId   {protected route for user}
+router.get("/partner/:partnerId", authMiddleware.authUsermiddleware, foodController.getPartnerProfile);
+// http://localhost:8000/api/food   {protected route for user}
+router.get("/", authMiddleware.authUsermiddleware, foodController.getFooditem);
 module.exports = router;

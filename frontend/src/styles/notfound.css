@@ -1,0 +1,388 @@
+/* ============================================================
+   404 Not Found — animated premium page
+   ============================================================ */
+
+/* ---------- Page layout ---------- */
+.notfound-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--space-lg);
+  background: var(--surface-page);
+  font-family: var(--font-family);
+  overflow: hidden;
+  position: relative;
+}
+
+/* ---------- Floating food particles ---------- */
+.notfound-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.notfound-particle {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0;
+  animation: particleFloat 12s infinite ease-in-out;
+  will-change: transform, opacity;
+}
+
+.notfound-particle:nth-child(1)  { left:  5%; animation-delay: 0s;    font-size: 1.6rem; }
+.notfound-particle:nth-child(2)  { left: 15%; animation-delay: 1.5s;  font-size: 2.2rem; }
+.notfound-particle:nth-child(3)  { left: 25%; animation-delay: 3s;    font-size: 1.4rem; }
+.notfound-particle:nth-child(4)  { left: 38%; animation-delay: 0.8s;  font-size: 1.8rem; }
+.notfound-particle:nth-child(5)  { left: 50%; animation-delay: 4.5s;  font-size: 2rem;   }
+.notfound-particle:nth-child(6)  { left: 62%; animation-delay: 2s;    font-size: 1.5rem; }
+.notfound-particle:nth-child(7)  { left: 72%; animation-delay: 3.5s;  font-size: 2.4rem; }
+.notfound-particle:nth-child(8)  { left: 82%; animation-delay: 1s;    font-size: 1.7rem; }
+.notfound-particle:nth-child(9)  { left: 90%; animation-delay: 5s;    font-size: 1.3rem; }
+.notfound-particle:nth-child(10) { left: 45%; animation-delay: 6s;    font-size: 2.1rem; }
+
+@keyframes particleFloat {
+  0%   { transform: translateY(110vh) rotate(0deg)   scale(0.8); opacity: 0;   }
+  10%  { opacity: 0.6; }
+  50%  { opacity: 0.4; }
+  90%  { opacity: 0;   }
+  100% { transform: translateY(-20vh) rotate(360deg) scale(1.2); opacity: 0;   }
+}
+
+/* ---------- Content wrapper ---------- */
+.notfound-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 540px;
+}
+
+/* ---------- Plate (animated ring around the 0) ---------- */
+.notfound-plate {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-xl);
+}
+
+/* ---------- The big 404 ---------- */
+.notfound-number {
+  font-size: clamp(7rem, 20vw, 12rem);
+  font-weight: 800;
+  letter-spacing: -4px;
+  line-height: 1;
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    var(--brand-primary) 0%,
+    #ff6b6b 25%,
+    var(--partner-accent) 50%,
+    var(--brand-primary) 75%,
+    #ff6b6b 100%
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 6s ease infinite, numberEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  user-select: none;
+}
+
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%;   }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%;   }
+}
+
+@keyframes numberEntrance {
+  from { opacity: 0; transform: scale(0.5) translateY(40px); filter: blur(10px); }
+  to   { opacity: 1; transform: scale(1)   translateY(0);    filter: blur(0);    }
+}
+
+/* ---------- Middle "0" — the plate ---------- */
+.notfound-zero {
+  position: relative;
+  display: inline-block;
+}
+
+.notfound-plate-ring {
+  position: absolute;
+  inset: -12px;
+  border: 3px dashed var(--border-default);
+  border-radius: 50%;
+  animation: plateRotate 20s linear infinite;
+}
+
+@keyframes plateRotate {
+  from { transform: rotate(0deg);   }
+  to   { transform: rotate(360deg); }
+}
+
+.notfound-fork {
+  position: absolute;
+  font-size: 2.5rem;
+  animation: forkBounce 2s ease-in-out infinite;
+}
+
+.notfound-fork--left {
+  top: 50%;
+  left: -52px;
+  transform: translateY(-50%) rotate(-30deg);
+  animation-delay: 0s;
+}
+
+.notfound-fork--right {
+  top: 50%;
+  right: -52px;
+  transform: translateY(-50%) rotate(30deg);
+  animation-delay: 0.3s;
+}
+
+@keyframes forkBounce {
+  0%, 100% { transform: translateY(-50%) rotate(-30deg) translateX(0);  }
+  50%      { transform: translateY(-50%) rotate(-30deg) translateX(-6px); }
+}
+
+.notfound-fork--right {
+  animation-name: forkBounceRight;
+}
+
+@keyframes forkBounceRight {
+  0%, 100% { transform: translateY(-50%) rotate(30deg) translateX(0);   }
+  50%      { transform: translateY(-50%) rotate(30deg) translateX(6px); }
+}
+
+/* ---------- Glitch on hover ---------- */
+.notfound-plate:hover .notfound-number {
+  animation: gradientShift 6s ease infinite, glitch 0.4s ease both;
+}
+
+@keyframes glitch {
+  0%   { transform: translate(0);              }
+  20%  { transform: translate(-3px, 3px);      }
+  40%  { transform: translate(3px, -3px);      }
+  60%  { transform: translate(-2px, -2px);     }
+  80%  { transform: translate(2px, 2px);       }
+  100% { transform: translate(0);              }
+}
+
+/* ---------- Sad plate emoji ---------- */
+.notfound-emoji {
+  font-size: 3.5rem;
+  display: block;
+  margin-bottom: var(--space-lg);
+  animation: emojiEntrance 0.7s 0.3s cubic-bezier(0.16, 1, 0.3, 1) both,
+             emojiBob 3s ease-in-out 1s infinite;
+}
+
+@keyframes emojiEntrance {
+  from { opacity: 0; transform: scale(0) rotate(-180deg); }
+  to   { opacity: 1; transform: scale(1) rotate(0deg);    }
+}
+
+@keyframes emojiBob {
+  0%, 100% { transform: translateY(0) rotate(0deg);    }
+  25%      { transform: translateY(-6px) rotate(-3deg); }
+  75%      { transform: translateY(4px) rotate(3deg);   }
+}
+
+/* ---------- Title ---------- */
+.notfound-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin: 0 0 var(--space-sm);
+  letter-spacing: -0.3px;
+  animation: textSlideUp 0.6s 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* ---------- Subtitle ---------- */
+.notfound-subtitle {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  margin: 0 0 var(--space-2xl);
+  line-height: var(--line-height-normal);
+  animation: textSlideUp 0.6s 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes textSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* ---------- Actions ---------- */
+.notfound-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  animation: textSlideUp 0.6s 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Primary CTA */
+.notfound-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 14px 28px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.notfound-btn--primary {
+  color: var(--text-inverse);
+  background: var(--brand-primary);
+  box-shadow: 0 4px 15px rgba(226, 55, 68, 0.3);
+}
+
+.notfound-btn--primary:hover {
+  background: var(--brand-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(226, 55, 68, 0.4);
+}
+
+.notfound-btn--primary:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* Ghost CTA */
+.notfound-btn--ghost {
+  color: var(--text-primary);
+  background: transparent;
+  border: 1px solid var(--border-default);
+}
+
+.notfound-btn--ghost:hover {
+  background: var(--surface-overlay);
+  border-color: var(--text-tertiary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.notfound-btn--ghost:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* Button icon */
+.notfound-btn-icon {
+  width: 18px;
+  height: 18px;
+  transition: transform var(--transition-fast);
+}
+
+.notfound-btn:hover .notfound-btn-icon {
+  transform: translateX(-2px);
+}
+
+.notfound-btn--ghost:hover .notfound-btn-icon {
+  transform: translateX(2px);
+}
+
+/* ---------- Decorative search hint ---------- */
+.notfound-search {
+  margin-top: var(--space-2xl);
+  animation: textSlideUp 0.6s 0.95s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.notfound-search-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  max-width: 340px;
+  margin: 0 auto;
+  padding: 12px 18px;
+  background: var(--surface-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.notfound-search-bar:focus-within {
+  border-color: var(--border-focus);
+  box-shadow: var(--shadow-focus);
+}
+
+.notfound-search-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--icon-muted);
+  flex-shrink: 0;
+}
+
+.notfound-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+}
+
+.notfound-search-input::placeholder {
+  color: var(--text-tertiary);
+}
+
+.notfound-search-hint {
+  font-size: var(--font-size-xs);
+  color: var(--text-tertiary);
+  margin-top: var(--space-sm);
+}
+
+/* ---------- Pulse dot on the plate ring ---------- */
+.notfound-pulse-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--brand-primary);
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: pulseDot 2s ease-in-out infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: translateX(-50%) scale(1);   opacity: 1;   }
+  50%      { transform: translateX(-50%) scale(1.8); opacity: 0.3; }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 480px) {
+  .notfound-number {
+    letter-spacing: -2px;
+  }
+
+  .notfound-fork {
+    display: none;
+  }
+
+  .notfound-actions {
+    flex-direction: column;
+  }
+
+  .notfound-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .notfound-search-bar {
+    max-width: 100%;
+  }
+}

@@ -1,0 +1,135 @@
+.profile-page {
+  min-height: 100vh;
+  background: var(--surface-page);
+  font-family: var(--font-family);
+}
+
+.profile-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: var(--space-md) var(--space-xl);
+  background: var(--surface-card);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.profile-back {
+  color: var(--text-link);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.profile-main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--space-xl);
+}
+
+.profile-card {
+  text-align: center;
+  background: var(--surface-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl) var(--space-xl);
+  margin-bottom: var(--space-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.profile-avatar {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto var(--space-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  background: var(--partner-accent-subtle);
+  border-radius: 50%;
+}
+
+.profile-name {
+  margin: 0 0 var(--space-sm);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.profile-meta,
+.profile-address {
+  margin: 0 0 var(--space-xs);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.profile-address {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: var(--line-height-normal);
+}
+
+.profile-count {
+  margin: var(--space-md) 0 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--partner-accent);
+}
+
+.profile-section-title {
+  margin: 0 0 var(--space-lg);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.profile-food-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-lg);
+}
+
+.profile-food-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.profile-food-video {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  background: #000;
+  display: block;
+}
+
+.profile-food-info {
+  padding: var(--space-md);
+}
+
+.profile-food-info h3 {
+  margin: 0 0 var(--space-xs);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.profile-food-info p {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: var(--line-height-normal);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.profile-loading,
+.profile-empty {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: var(--space-2xl);
+}
