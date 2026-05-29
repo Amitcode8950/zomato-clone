@@ -123,7 +123,7 @@ const FoodPartnerRegister = () => {
         <div className="auth-footer">
           Already a partner?{' '}
           <Link to="/food-partner/login">Sign in</Link>
-        </div>
+        </div> 
       </div>
     </div>
   );
